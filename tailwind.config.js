@@ -9,6 +9,7 @@ module.exports = {
       },
       maxWidth: {
         1440: '1440px',
+        350: '350px'
       },
     },
     backgroundColor: (theme) => ({
@@ -20,6 +21,7 @@ module.exports = {
       ...theme('colors'),
       eggshell: '#EEE6E1',
       charcoal: '#565452',
+      'charcoal-100': '#827F7C'
     }),
     borderColor: (theme) => ({
       ...theme('colors'),
