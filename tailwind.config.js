@@ -16,9 +16,16 @@ module.exports = {
       eggshell: '#EEE6E1',
       charcoal: '#565452',
     }),
-    textColor: {
+    textColor: (theme) => ({
+      ...theme('colors'),
+      eggshell: '#EEE6E1',
       charcoal: '#565452',
-    },
+    }),
+    borderColor: (theme) => ({
+      ...theme('colors'),
+      eggshell: '#EEE6E1',
+      charcoal: '#565452',
+    }),
     fontFamily: {
       sans: ['VT323', 'Sans-serif'],
     },
