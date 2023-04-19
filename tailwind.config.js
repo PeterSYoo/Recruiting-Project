@@ -9,7 +9,7 @@ module.exports = {
       },
       maxWidth: {
         1440: '1440px',
-        350: '350px'
+        500: '500px'
       },
     },
     backgroundColor: (theme) => ({
