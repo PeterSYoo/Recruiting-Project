@@ -1,7 +1,7 @@
 // -------------------------------- TEMPLATE ------------------------------- ***
 <template>
   <section
-    @click="$emit('show-edit-modal')"
+    @click="openEditModal(guest)"
     class="group w-full max-w-550 cursor-pointer border-2 border-transparent p-0.5 hover:border-2 hover:border-charcoal"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
@@ -9,6 +9,7 @@
     <div
       class="flex items-center justify-between gap-5 border border-transparent px-6 py-4 group-hover:border group-hover:border-charcoal"
     >
+      <!---------------------------- AVATAR ----------------------------------->
       <div class="flex items-center gap-8">
         <div>
           <img
@@ -23,12 +24,14 @@
           />
         </div>
         <div class="flex flex-col">
-          <p class="text-2xl">{{ email }}</p>
+          <p class="text-2xl">{{ guest.email }}</p>
           <p class="text-2xl">
-            {{ tickets }} {{ tickets > 1 ? 'TICKETS' : 'TICKET' }}
+            {{ guest.tickets }} {{ guest.tickets > 1 ? 'Tickets' : 'Ticket' }}
           </p>
         </div>
       </div>
+      <!----------------------------------------------------------------------->
+      <!-------------------------- DELETE ICON -------------------------------->
       <div class="hover:text-charcoal-100">
         <svg
           v-if="isHovered"
@@ -43,6 +46,7 @@
           />
         </svg>
       </div>
+      <!----------------------------------------------------------------------->
     </div>
   </section>
 </template>
@@ -56,13 +60,14 @@ export default {
     };
   },
   props: {
-    email: {
-      type: String,
+    guest: {
+      type: Object,
       required: true,
     },
-    tickets: {
-      type: Number,
-      required: true,
+  },
+  methods: {
+    openEditModal(guest) {
+      this.$emit('open-edit-modal', guest);
     },
   },
 };
