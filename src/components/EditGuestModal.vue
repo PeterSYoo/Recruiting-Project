@@ -1,7 +1,7 @@
 // -------------------------------- TEMPLATE ------------------------------- ***
 <template>
   <section
-    class="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-edit-modal-pattern"
+    class="fixed left-0 top-0 z-40 flex h-screen w-screen flex-col items-center justify-center bg-edit-modal-pattern"
   >
     <div
       class="mt-20 flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-charcoal-900 py-10"
@@ -15,35 +15,56 @@
         />
       </div>
       <!----------------------------------------------------------------------->
-      <div class="-ml-20 flex justify-center gap-56">
+      <div class="-ml-20 mt-14 flex justify-center gap-56">
         <!------------------------ EMAIL INPUT -------------------------------->
-        <div class="flex w-1/4 flex-col items-center gap-5">
+        <div class="flex w-1/4 flex-col items-center">
           <p class="text-7xl">📧</p>
           <div class="w-full border-b-2 border-eggshell pb-0.5">
-            <input
-              type="email"
-              class="focus:outline-none w-full border-b border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
-              v-model="guest.email"
-              pattern="[a-zA-Z0-9@]{1,26}"
-            />
+            <validation-provider name="email" rules="required|email|max:26">
+              <template #default="{ errors }">
+                <input
+                  type="email"
+                  class="focus:outline-none w-full border-b border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
+                  v-model="guest.email"
+                  pattern="[a-zA-Z0-9@]{1,26}"
+                />
+                <p
+                  v-if="errors[0]"
+                  class="absolute left-0 top-80 z-50 -mt-5 flex w-full justify-center text-center text-3xl text-eggshell"
+                >
+                  "{{ errors[0] }}"
+                </p>
+              </template>
+            </validation-provider>
           </div>
         </div>
         <!--------------------------------------------------------------------->
         <!----------------------- TICKETS INPUT ------------------------------->
-        <div class="flex flex-col items-center gap-5">
+        <div class="flex flex-col items-center">
           <p class="text-7xl">🎟️</p>
           <div class="border-b-2 border-eggshell pb-0.5">
             <div
               class="flex items-center border-b border-eggshell px-2 py-1 text-3xl text-eggshell"
             >
-              <input
-                type="text"
-                class="focus:outline-none w-8 bg-transparent px-2"
-                v-model="guest.tickets"
-                maxlength="1"
-                onkeydown="return (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode === 8 || event.keyCode === 46"
-              />
-              <p class="">Ticket(s)</p>
+              <validation-provider name="tickets" rules="required|min: 1">
+                <template #default="{ errors }">
+                  <input
+                    type="text"
+                    class="focus:outline-none w-8 bg-transparent px-2"
+                    v-model="guest.tickets"
+                    maxlength="1"
+                    onkeydown="if (event.keyCode === 48) event.preventDefault()"
+                    onkeypress="return (event.keyCode >= 49 && event.keyCode <= 57) || event.keyCode === 8 || event.keyCode === 46"
+                  />
+                  <span class="">Ticket(s)</span>
+                  <p
+                    v-if="errors[0]"
+                    class="absolute left-0 top-80 z-50 mt-3 flex w-full justify-center text-center text-3xl text-eggshell"
+                  >
+                    "{{ errors[0] }}"
+                  </p>
+                </template>
+              </validation-provider>
             </div>
           </div>
         </div>
