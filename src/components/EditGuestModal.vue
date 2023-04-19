@@ -1,29 +1,30 @@
 // -------------------------------- TEMPLATE ------------------------------- ***
 <template>
   <section
-    class="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-edit-modal-pattern"
+    class="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-edit-modal-pattern"
   >
     <div
-      class="flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-charcoal-900 py-20"
+      class="mt-20 flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-charcoal-900 py-10"
     >
-      <!---------------------------- AVATAR ----------------------------------->
+      <!--------------------------- SHOPKEEP ---------------------------------->
       <div class="flex justify-center pt-14">
         <img
-          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681811557/KPA%20Test/girl_xsqr5e.png"
-          alt="girl"
+          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681889466/KPA%20Test/wizard_ykxkmr.png"
+          alt="wizard"
           class="scale-150 transform"
         />
       </div>
       <!----------------------------------------------------------------------->
-      <div class="flex justify-center gap-28">
+      <div class="-ml-20 flex justify-center gap-56">
         <!------------------------ EMAIL INPUT -------------------------------->
-        <div class="flex w-1/3 flex-col items-center gap-5">
+        <div class="flex w-1/4 flex-col items-center gap-5">
           <p class="text-7xl">📧</p>
-          <div class="w-full border-2 border-eggshell p-0.5">
+          <div class="w-full border-b-2 border-eggshell pb-0.5">
             <input
-              type="text"
-              class="focus:outline-none w-full border border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
+              type="email"
+              class="focus:outline-none w-full border-b border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
               v-model="guest.email"
+              pattern="[a-zA-Z0-9@]{1,26}"
             />
           </div>
         </div>
@@ -31,14 +32,16 @@
         <!----------------------- TICKETS INPUT ------------------------------->
         <div class="flex flex-col items-center gap-5">
           <p class="text-7xl">🎟️</p>
-          <div class="border-2 border-eggshell p-0.5">
+          <div class="border-b-2 border-eggshell pb-0.5">
             <div
-              class="flex items-center border border-eggshell px-2 py-1 text-3xl text-eggshell"
+              class="flex items-center border-b border-eggshell px-2 py-1 text-3xl text-eggshell"
             >
               <input
                 type="text"
                 class="focus:outline-none w-8 bg-transparent px-2"
                 v-model="guest.tickets"
+                maxlength="1"
+                onkeydown="return (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode === 8 || event.keyCode === 46"
               />
               <p class="">Ticket(s)</p>
             </div>
@@ -46,11 +49,11 @@
         </div>
         <!--------------------------------------------------------------------->
       </div>
-      <div class="flex justify-center gap-64">
+      <div class="flex justify-center gap-96">
         <!----------------------- CANCEL BUTTON ------------------------------->
         <div
           @click="$emit('close')"
-          class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
+          class="group -ml-12 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
         >
           <button
             class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
@@ -73,14 +76,37 @@
         <!--------------------------------------------------------------------->
       </div>
     </div>
+    <div class="flex w-48 flex-1 justify-center bg-charcoal-900">
+      <div class="absolute bottom-0">
+        <img
+          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681889218/KPA%20Test/girl-behind-walk_vg7jvc.gif"
+          alt="girl behind walking"
+          class="translate-y-full transform"
+          id="girl-behind-walking"
+          v-bind:class="{ hidden: showGirlBehind }"
+        />
+        <img
+          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681891107/KPA%20Test/girl-behind_wyvkeg.png"
+          alt="girl behind"
+          class="mb-27vh"
+          id="girl-behind"
+          v-bind:class="{ hidden: !showGirlBehind }"
+        />
+      </div>
+    </div>
   </section>
 </template>
 // ------------------------------------------------------------------------- ***
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
+  data() {
+    return {
+      showGirlBehind: false,
+    };
+  },
   props: {
-    showEditModal: {
+    showEditGuestModal: {
       type: Boolean,
       required: true,
     },
@@ -105,6 +131,13 @@ export default {
       this.updateGuest(updatedGuest);
       this.$emit('close');
     },
+  },
+  mounted() {
+    const offScreenImage = document.querySelector('.translate-y-full');
+    offScreenImage.classList.add('animate-slide-up');
+    setTimeout(() => {
+      this.showGirlBehind = true;
+    }, 3000);
   },
 };
 </script>
