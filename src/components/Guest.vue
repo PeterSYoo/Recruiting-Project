@@ -1,14 +1,15 @@
 // -------------------------------- TEMPLATE ------------------------------- ***
 <template>
   <section
-    class="group w-full max-w-500 cursor-pointer border-2 border-transparent p-0.5 hover:border-2 hover:border-charcoal"
+    @click="$emit('show-edit-modal')"
+    class="group w-full max-w-550 cursor-pointer border-2 border-transparent p-0.5 hover:border-2 hover:border-charcoal"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
   >
     <div
       class="flex items-center justify-between gap-5 border border-transparent px-6 py-4 group-hover:border group-hover:border-charcoal"
     >
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-8">
         <div>
           <img
             src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681811557/KPA%20Test/girl_xsqr5e.png"
