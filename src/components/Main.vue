@@ -3,6 +3,11 @@
   <main
     class="min-w-screen flex min-h-screen flex-col items-center justify-center bg-eggshell px-10"
   >
+    <EditModal
+      v-if="showEditModal"
+      @close="showEditModal = false"
+      :show-modal="showEditModal"
+    />
     <!------------------------------ HEADER ----------------------------------->
     <section class="flex w-full max-w-1440 items-center justify-between px-6">
       <div class="flex items-center gap-5">
@@ -15,7 +20,7 @@
         <h1 class="text-2xl text-charcoal">NYAN CAT SHOW</h1>
       </div>
       <div>
-        <p class="text-2xl text-charcoal">TOTAL GUESTS: 8</p>
+        <p class="text-2xl text-charcoal">TOTAL GUESTS: {{ guests.length }}</p>
       </div>
       <div
         class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-charcoal"
@@ -34,9 +39,14 @@
         class="grid h-full w-full grid-cols-2 place-content-center gap-20 border border-charcoal p-28 text-charcoal"
       >
         <!-------------------------- GUESTS ----------------------------------->
-        <div v-for="guest in guests" :key="guest.email">
-          <Guest :email="guest.email" :tickets="guest.tickets" />
-        </div>
+        <Guest
+          v-for="guest in guests"
+          :key="guest.email"
+          :email="guest.email"
+          :tickets="guest.tickets"
+          :show-edit-modal="false"
+          @show-edit-modal="showEditModal = true"
+        />
         <!--------------------------------------------------------------------->
       </div>
     </section>
@@ -48,15 +58,18 @@
 <script>
 const GuestRepository = require('../guest-repository');
 import Guest from './Guest.vue';
+import EditModal from './EditModal.vue';
 
 export default {
   data: () => {
     return {
       guests: [],
+      showEditModal: false,
     };
   },
   components: {
     Guest,
+    EditModal,
   },
   mounted() {
     const guestRepository = new GuestRepository();
