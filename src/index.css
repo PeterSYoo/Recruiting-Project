@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.translate-y-full {
+  transform: translateY(100%);
+}
+
+.animate-slide-up {
+  animation: slide-up 3s ease forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-27vh);
+  }
+}
