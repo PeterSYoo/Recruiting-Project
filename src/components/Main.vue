@@ -1,9 +1,9 @@
-// -------------------------------- Template ------------------------------- ***
+// -------------------------------- TEMPLATE ------------------------------- ***
 <template>
   <main
     class="min-w-screen flex min-h-screen flex-col items-center justify-center bg-eggshell px-10"
   >
-    <!------------------------------ Header ----------------------------------->
+    <!------------------------------ HEADER ----------------------------------->
     <section class="flex w-full max-w-1440 items-center justify-between px-6">
       <div class="flex items-center gap-5">
         <div>
@@ -28,12 +28,12 @@
       </div>
     </section>
     <!------------------------------------------------------------------------->
-    <!---------------------------- Guest Table -------------------------------->
+    <!---------------------------- GUEST TABLE -------------------------------->
     <section class="mt-1 flex w-full max-w-1440 border-2 border-charcoal p-0.5">
       <div
         class="grid h-full w-full grid-cols-2 place-content-center gap-20 border border-charcoal p-28 text-charcoal"
       >
-        <!--------------------------- Guests ---------------------------------->
+        <!-------------------------- GUESTS ----------------------------------->
         <div v-for="guest in guests" :key="guest.email">
           <Guest :email="guest.email" :tickets="guest.tickets" />
         </div>
@@ -44,7 +44,7 @@
   </main>
 </template>
 // ------------------------------------------------------------------------- ***
-// --------------------------------- Script -------------------------------- ***
+// --------------------------------- SCRIPT -------------------------------- ***
 <script>
 const GuestRepository = require('../guest-repository');
 import Guest from './Guest.vue';
