@@ -8,7 +8,7 @@
       class="flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-black py-10"
     >
       <!---------------------------- GHOST ------------------------------------>
-      <div class="flex justify-center pt-14">
+      <div class="flex justify-center pt-32">
         <img
           src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681980799/KPA%20Test/ghost-right_wy8gas.gif"
           alt="ghost right"
@@ -23,7 +23,7 @@
         />
       </div>
       <!----------------------------------------------------------------------->
-      <div class="-ml-10 mt-10 flex justify-center gap-56">
+      <div class="-ml-10 -mt-10 flex justify-center gap-56">
         <!------------------------ EMAIL INPUT -------------------------------->
         <div class="flex w-1/4 flex-col items-center">
           <div>
@@ -45,7 +45,7 @@
               />
               <p
                 v-if="errors[0]"
-                class="absolute left-0 top-96 z-30 mt-44 flex w-full justify-center text-center text-3xl text-eggshell"
+                class="absolute left-0 top-0 z-30 mt-44 flex w-full justify-center text-center text-3xl text-eggshell"
               >
                 "{{ errors[0] }}"
               </p>
@@ -81,7 +81,7 @@
                 <span class="">Ticket(s)</span>
                 <p
                   v-if="errors[0]"
-                  class="absolute left-0 top-96 z-30 mt-56 flex w-full justify-center text-center text-3xl text-eggshell"
+                  class="absolute left-0 top-0 z-30 mt-56 flex w-full justify-center text-center text-3xl text-eggshell"
                 >
                   "{{ errors[0] }}"
                 </p>
