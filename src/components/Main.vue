@@ -145,10 +145,9 @@ export default {
     },
     async updateGuest(currentGuest, updatedGuest) {
       try {
-        // Load the list of guests from the GuestRepository
         const guests = await guestRepository.load();
 
-        // Find the index of the current guest in the list
+        // Find index position of current guest
         const index = guests.findIndex(
           (guest) => guest.email === currentGuest.email
         );
@@ -157,13 +156,14 @@ export default {
           console.error('Guest not found');
           return;
         }
-        // Update the current guest with the updated guest
-        guests.splice(index, 1, updatedGuest);
-        console.log('Guest updated successfully in localStorage');
 
-        // Save the updated list of guests back to the GuestRepository
+        // Replace current guest with updated guest in guests array
+        guests.splice(index, 1, updatedGuest);
+        console.log('Guest updated successfully in guests array');
+
+        // Save the updated array to the localStorage
         await guestRepository.save(guests);
-        console.log('Updated guests saved to localStorage');
+        console.log('Updated guests array saved to localStorage');
 
         // Re-render the component by loading again.
         const updatedGuests = await guestRepository.load();
