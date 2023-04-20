@@ -8,7 +8,7 @@
       @close="showAddNewGuestModal = false"
       :showAddNewGuestModal="showAddNewGuestModal"
       :guest="guest"
-      :updateGuest="updateGuest"
+      :newGuest="newGuest"
     />
     <EditGuestModal
       v-if="showEditGuestModal"
@@ -151,6 +151,9 @@ export default {
     openAddNewGuestModal(guest) {
       this.guest = guest;
       this.showAddNewGuestModal = true;
+    },
+    newGuest(newGuest) {
+      console.log({ newGuest });
     },
     updateGuest(currentGuest, updatedGuest) {
       // Load the list of guests from the GuestRepository
