@@ -34,6 +34,7 @@
       <!-------------------------- DELETE ICON -------------------------------->
       <div class="hover:text-charcoal-100">
         <svg
+          @click.stop="deleteGuest(index)"
           v-if="isHovered"
           xmlns="http://www.w3.org/2000/svg"
           width="45"
@@ -57,6 +58,14 @@ export default {
   props: {
     guest: {
       type: Object,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+    deleteGuest: {
+      type: Function,
       required: true,
     },
   },
