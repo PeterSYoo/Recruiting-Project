@@ -110,18 +110,18 @@
     <div class="flex w-48 flex-1 justify-center bg-charcoal-900">
       <div class="absolute bottom-0">
         <img
-          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681889218/KPA%20Test/girl-behind-walk_vg7jvc.gif"
-          alt="girl behind walking"
+          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681969454/KPA%20Test/link-behindwalk_lnw8qr.gif"
+          alt="link behind walking"
           class="translate-y-full transform"
-          id="girl-behind-walking"
-          v-bind:class="{ hidden: showGirlBehind }"
+          id="link-behind-walking"
+          v-bind:class="{ hidden: showLinkBehind }"
         />
         <img
-          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681891107/KPA%20Test/girl-behind_wyvkeg.png"
-          alt="girl behind"
+          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681969547/KPA%20Test/link-behind_ngxbdi.png"
+          alt="link behind"
           class="mb-27vh"
           id="girl-behind"
-          v-bind:class="{ hidden: !showGirlBehind }"
+          v-bind:class="{ hidden: !showLinkBehind }"
         />
       </div>
     </div>
@@ -147,7 +147,7 @@ export default {
   },
   data() {
     return {
-      showGirlBehind: false,
+      showLinkBehind: false,
       email: this.guest.email,
       tickets: this.guest.tickets,
     };
@@ -157,7 +157,7 @@ export default {
     const offScreenImage = document.querySelector('.translate-y-full');
     offScreenImage.classList.add('animate-slide-up');
     setTimeout(() => {
-      this.showGirlBehind = true;
+      this.showLinkBehind = true;
     }, 3000);
   },
   methods: {
