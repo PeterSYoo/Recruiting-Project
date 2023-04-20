@@ -19,3 +19,31 @@
     transform: translateY(-27vh);
   }
 }
+
+.animate-move-left {
+  animation: move-left 4s linear forwards;
+}
+
+.animate-move-right {
+  animation: move-right 4s linear forwards;
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes move-right {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
