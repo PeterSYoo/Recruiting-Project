@@ -13,13 +13,13 @@
       <div class="flex items-center gap-8">
         <div>
           <img
-            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681811557/KPA%20Test/girl_xsqr5e.png"
-            alt="girl"
+            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681968899/KPA%20Test/link-idle_pw0qgz.gif"
+            alt="link idle"
             v-show="!isHovered"
           />
           <img
-            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681811352/KPA%20Test/girl-walk_w4vuij.gif"
-            alt="girl walking"
+            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681968664/KPA%20Test/link-walk_tybiaz.gif"
+            alt="link walking"
             v-show="isHovered"
           />
         </div>
