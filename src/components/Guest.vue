@@ -54,16 +54,16 @@
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
-  data: () => {
-    return {
-      isHovered: false,
-    };
-  },
   props: {
     guest: {
       type: Object,
       required: true,
     },
+  },
+  data: () => {
+    return {
+      isHovered: false,
+    };
   },
   methods: {
     openEditModal(guest) {
