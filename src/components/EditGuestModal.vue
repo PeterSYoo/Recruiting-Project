@@ -5,7 +5,7 @@
     class="fixed left-0 top-0 z-40 flex h-screen w-screen flex-col items-center justify-center bg-edit-modal-pattern"
   >
     <div
-      class="mt-20 flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-charcoal-900 py-10"
+      class="mt-20 flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-black py-10"
     >
       <!--------------------------- SHOPKEEP ---------------------------------->
       <div class="flex justify-center pt-14">
@@ -19,8 +19,13 @@
       <div class="-ml-20 mt-14 flex justify-center gap-56">
         <!------------------------ EMAIL INPUT -------------------------------->
         <div class="flex w-1/4 flex-col items-center">
-          <p class="text-7xl">📧</p>
-          <div class="w-full border-b-2 border-eggshell pb-0.5">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1682019545/KPA%20Test/email_fvvcyt.png"
+              alt="email"
+            />
+          </div>
+          <div class="mt-5 w-full border-b-2 border-eggshell pb-0.5">
             <ValidationProvider
               ref="emailValidator"
               name="email"
@@ -45,8 +50,13 @@
         <!--------------------------------------------------------------------->
         <!----------------------- TICKETS INPUT ------------------------------->
         <div class="flex flex-col items-center">
-          <p class="text-7xl">🎟️</p>
-          <div class="border-b-2 border-eggshell pb-0.5">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1682019050/KPA%20Test/ticket_l67mha.png"
+              alt="ticket"
+            />
+          </div>
+          <div class="mt-5 border-b-2 border-eggshell pb-0.5">
             <div
               class="flex items-center border-b border-eggshell px-2 py-1 text-3xl text-eggshell"
             >
@@ -107,7 +117,7 @@
         <!--------------------------------------------------------------------->
       </div>
     </div>
-    <div class="flex w-48 flex-1 justify-center bg-charcoal-900">
+    <div class="flex w-48 flex-1 justify-center bg-black">
       <div class="absolute bottom-0">
         <img
           src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681969454/KPA%20Test/link-behindwalk_lnw8qr.gif"
@@ -153,7 +163,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.guest);
     const offScreenImage = document.querySelector('.translate-y-full');
     offScreenImage.classList.add('animate-slide-up');
     setTimeout(() => {
