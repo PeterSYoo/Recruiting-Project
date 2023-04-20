@@ -25,27 +25,25 @@
               alt="email"
             />
           </div>
-          <div class="mt-5 w-full border-b-2 border-eggshell pb-0.5">
-            <ValidationProvider
-              ref="emailValidator"
-              name="email"
-              rules="required|email|max:26"
-            >
-              <template #default="{ errors }">
-                <input
-                  type="email"
-                  class="focus:outline-none w-full border-b border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
-                  v-model="email"
-                />
-                <p
-                  v-if="errors[0]"
-                  class="absolute left-0 top-80 z-50 -mt-5 flex w-full justify-center text-center text-3xl text-eggshell"
-                >
-                  "{{ errors[0] }}"
-                </p>
-              </template>
-            </ValidationProvider>
-          </div>
+          <ValidationProvider
+            ref="emailValidator"
+            name="email"
+            rules="required|email|max:26"
+          >
+            <template #default="{ errors }">
+              <input
+                type="email"
+                class="focus:outline-none mt-5 w-full bg-transparent px-2 py-1 text-center text-3xl text-eggshell"
+                v-model="email"
+              />
+              <p
+                v-if="errors[0]"
+                class="absolute left-0 top-80 z-50 -mt-5 flex w-full justify-center text-center text-3xl text-eggshell"
+              >
+                "{{ errors[0] }}"
+              </p>
+            </template>
+          </ValidationProvider>
         </div>
         <!--------------------------------------------------------------------->
         <!----------------------- TICKETS INPUT ------------------------------->
@@ -56,34 +54,30 @@
               alt="ticket"
             />
           </div>
-          <div class="mt-5 border-b-2 border-eggshell pb-0.5">
-            <div
-              class="flex items-center border-b border-eggshell px-2 py-1 text-3xl text-eggshell"
+          <div class="mt-5 flex items-center px-2 py-1 text-3xl text-eggshell">
+            <ValidationProvider
+              ref="ticketsValidator"
+              name="tickets"
+              rules="required|min: 1"
             >
-              <ValidationProvider
-                ref="ticketsValidator"
-                name="tickets"
-                rules="required|min: 1"
-              >
-                <template #default="{ errors }">
-                  <input
-                    type="text"
-                    class="focus:outline-none w-8 bg-transparent px-2"
-                    v-model="tickets"
-                    maxlength="1"
-                    onkeydown="if (event.keyCode === 48) event.preventDefault()"
-                    onkeypress="return (event.keyCode >= 49 && event.keyCode <= 57) || event.keyCode === 8 || event.keyCode === 46"
-                  />
-                  <span class="">Ticket(s)</span>
-                  <p
-                    v-if="errors[0]"
-                    class="absolute left-0 top-80 z-50 mt-3 flex w-full justify-center text-center text-3xl text-eggshell"
-                  >
-                    "{{ errors[0] }}"
-                  </p>
-                </template>
-              </ValidationProvider>
-            </div>
+              <template #default="{ errors }">
+                <input
+                  type="text"
+                  class="focus:outline-none w-8 bg-transparent px-2"
+                  v-model="tickets"
+                  maxlength="1"
+                  onkeydown="if (event.keyCode === 48) event.preventDefault()"
+                  onkeypress="return (event.keyCode >= 49 && event.keyCode <= 57) || event.keyCode === 8 || event.keyCode === 46"
+                />
+                <span class="">Ticket(s)</span>
+                <p
+                  v-if="errors[0]"
+                  class="absolute left-0 top-80 z-50 mt-3 flex w-full justify-center text-center text-3xl text-eggshell"
+                >
+                  "{{ errors[0] }}"
+                </p>
+              </template>
+            </ValidationProvider>
           </div>
         </div>
         <!--------------------------------------------------------------------->
