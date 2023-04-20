@@ -9,9 +9,9 @@ module.exports = {
       },
       backgroundImage: {
         'edit-modal-pattern':
-          "url('https://res.cloudinary.com/dryh1nvhk/image/upload/v1681966587/KPA%20Test/edit-bg-tile_y3oshj.png')",
+          "url('https://res.cloudinary.com/dryh1nvhk/image/upload/v1682018812/KPA%20Test/edit-bg-tile_nmtbd8.png')",
         'add-modal-pattern':
-          "url('https://res.cloudinary.com/dryh1nvhk/image/upload/v1681966396/KPA%20Test/add-bg-tile_y119m5.png')",
+          "url('https://res.cloudinary.com/dryh1nvhk/image/upload/v1682018341/KPA%20Test/add-bg-tile_im4q8k.png')",
       },
       width: {
         1440: '1440px',
