@@ -1,6 +1,7 @@
 // -------------------------------- TEMPLATE ------------------------------- ***
 <template>
-  <section
+  <form
+    @submit.prevent="onSubmit"
     class="fixed left-0 top-0 z-40 flex h-screen w-screen flex-col items-center justify-center bg-edit-modal-pattern"
   >
     <div
@@ -20,13 +21,16 @@
         <div class="flex w-1/4 flex-col items-center">
           <p class="text-7xl">📧</p>
           <div class="w-full border-b-2 border-eggshell pb-0.5">
-            <validation-provider name="email" rules="required|email|max:26">
+            <ValidationProvider
+              ref="emailValidator"
+              name="email"
+              rules="required|email|max:26"
+            >
               <template #default="{ errors }">
                 <input
                   type="email"
                   class="focus:outline-none w-full border-b border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
                   v-model="guest.email"
-                  pattern="[a-zA-Z0-9@]{1,26}"
                 />
                 <p
                   v-if="errors[0]"
@@ -35,7 +39,7 @@
                   "{{ errors[0] }}"
                 </p>
               </template>
-            </validation-provider>
+            </ValidationProvider>
           </div>
         </div>
         <!--------------------------------------------------------------------->
@@ -46,7 +50,11 @@
             <div
               class="flex items-center border-b border-eggshell px-2 py-1 text-3xl text-eggshell"
             >
-              <validation-provider name="tickets" rules="required|min: 1">
+              <ValidationProvider
+                ref="ticketsValidator"
+                name="tickets"
+                rules="required|min: 1"
+              >
                 <template #default="{ errors }">
                   <input
                     type="text"
@@ -64,7 +72,7 @@
                     "{{ errors[0] }}"
                   </p>
                 </template>
-              </validation-provider>
+              </ValidationProvider>
             </div>
           </div>
         </div>
@@ -77,6 +85,7 @@
           class="group -ml-12 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
         >
           <button
+            type="button"
             class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
           >
             CANCEL
@@ -85,10 +94,11 @@
         <!--------------------------------------------------------------------->
         <!------------------------- OK BUTTON --------------------------------->
         <div
-          @click="onSubmit()"
           class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
         >
           <button
+            type="submit"
+            @click="onSubmit()"
             class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
           >
             OK
@@ -115,7 +125,7 @@
         />
       </div>
     </div>
-  </section>
+  </form>
 </template>
 // ------------------------------------------------------------------------- ***
 // --------------------------------- SCRIPT -------------------------------- ***
@@ -142,15 +152,23 @@ export default {
   },
   methods: {
     onSubmit() {
-      const updatedGuest = {
-        ...this.guest,
-        name: this.name,
-        email: this.email,
-        tickets: this.tickets,
-      };
+      if (
+        this.$refs.emailValidator.messages[0] ||
+        this.$refs.ticketsValidator.messages[0]
+      ) {
+        return null;
+      } else {
+        // Submit form
+        const updatedGuest = {
+          ...this.guest,
+          name: this.name,
+          email: this.email,
+          tickets: this.tickets,
+        };
 
-      this.updateGuest(updatedGuest);
-      this.$emit('close');
+        this.updateGuest(updatedGuest);
+        this.$emit('close');
+      }
     },
   },
   mounted() {
