@@ -118,29 +118,17 @@ export default {
       showEditGuestModal: false,
       showAddNewGuestModal: false,
       guest: {},
-      loading: true,
       guestUpdated: false,
     };
   },
-  mounted() {
-    if (this.loading) {
-      guestRepository
-        .load()
-        .then((guests) => {
-          console.log({ guests });
-          this.guests = guests;
-          guestRepository
-            .save(guests)
-            .then(() => {
-              console.log('Guest updated successfully');
-            })
-            .catch((error) => {
-              console.error('Error saving guests', error);
-            });
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+  async mounted() {
+    try {
+      const guests = await guestRepository.load();
+      this.guests = guests;
+      await guestRepository.save(guests);
+      console.log('Guests saved to localStorage');
+    } catch (error) {
+      console.error('Error loading guests', error);
     }
   },
   methods: {
@@ -155,50 +143,34 @@ export default {
     newGuest(newGuest) {
       console.log({ newGuest });
     },
-    updateGuest(currentGuest, updatedGuest) {
-      // Load the list of guests from the GuestRepository
-      guestRepository
-        .load()
-        .then((guests) => {
-          // Find the index of the current guest in the list
-          const index = guests.findIndex(
-            (guest) => guest.email === currentGuest.email
-          );
+    async updateGuest(currentGuest, updatedGuest) {
+      try {
+        // Load the list of guests from the GuestRepository
+        const guests = await guestRepository.load();
 
-          console.log({ index });
-          if (index === -1) {
-            console.error('Guest not found');
-            return;
-          }
-          // Update the current guest with the updated guest
-          guests.splice(index, 1, updatedGuest);
+        // Find the index of the current guest in the list
+        const index = guests.findIndex(
+          (guest) => guest.email === currentGuest.email
+        );
 
-          // Save the updated list of guests back to the GuestRepository
-          guestRepository
-            .save(guests)
-            .then(() => {
-              console.log('Guest updated successfully');
-              // Re-render the component by loading and saving again
-              guestRepository.load().then((guests) => {
-                console.log({ guests });
-                this.guests = guests;
-                guestRepository
-                  .save(guests)
-                  .then(() => {
-                    console.log('Guest updated successfully');
-                  })
-                  .catch((error) => {
-                    console.error('Error saving guests', error);
-                  });
-              });
-            })
-            .catch((error) => {
-              console.error('Error saving guests', error);
-            });
-        })
-        .catch((error) => {
-          console.error('Error loading guests', error);
-        });
+        if (index === -1) {
+          console.error('Guest not found');
+          return;
+        }
+        // Update the current guest with the updated guest
+        guests.splice(index, 1, updatedGuest);
+        console.log('Guest updated successfully in localStorage');
+
+        // Save the updated list of guests back to the GuestRepository
+        await guestRepository.save(guests);
+        console.log('Updated guests saved to localStorage');
+
+        // Re-render the component by loading again.
+        const updatedGuests = await guestRepository.load();
+        this.guests = updatedGuests;
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
