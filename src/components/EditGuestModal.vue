@@ -30,7 +30,7 @@
                 <input
                   type="email"
                   class="focus:outline-none w-full border-b border-eggshell bg-transparent px-2 py-1 text-3xl text-eggshell"
-                  v-model="guest.email"
+                  v-model="email"
                 />
                 <p
                   v-if="errors[0]"
@@ -59,7 +59,7 @@
                   <input
                     type="text"
                     class="focus:outline-none w-8 bg-transparent px-2"
-                    v-model="guest.tickets"
+                    v-model="tickets"
                     maxlength="1"
                     onkeydown="if (event.keyCode === 48) event.preventDefault()"
                     onkeypress="return (event.keyCode >= 49 && event.keyCode <= 57) || event.keyCode === 8 || event.keyCode === 46"
@@ -131,13 +131,6 @@
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
-  data() {
-    return {
-      showGirlBehind: false,
-      email: this.guest.email,
-      tickets: this.guest.tickets,
-    };
-  },
   props: {
     showEditGuestModal: {
       type: Boolean,
@@ -151,6 +144,21 @@ export default {
       type: Function,
       required: true,
     },
+  },
+  data() {
+    return {
+      showGirlBehind: false,
+      email: this.guest.email,
+      tickets: this.guest.tickets,
+    };
+  },
+  mounted() {
+    console.log(this.guest);
+    const offScreenImage = document.querySelector('.translate-y-full');
+    offScreenImage.classList.add('animate-slide-up');
+    setTimeout(() => {
+      this.showGirlBehind = true;
+    }, 3000);
   },
   methods: {
     onSubmit() {
@@ -169,13 +177,6 @@ export default {
         this.$emit('close');
       }
     },
-  },
-  mounted() {
-    const offScreenImage = document.querySelector('.translate-y-full');
-    offScreenImage.classList.add('animate-slide-up');
-    setTimeout(() => {
-      this.showGirlBehind = true;
-    }, 3000);
   },
 };
 </script>
