@@ -134,6 +134,8 @@ export default {
   data() {
     return {
       showGirlBehind: false,
+      email: this.guest.email,
+      tickets: this.guest.tickets,
     };
   },
   props: {
@@ -158,15 +160,12 @@ export default {
       ) {
         return null;
       } else {
-        // Submit form
         const updatedGuest = {
-          ...this.guest,
-          name: this.name,
           email: this.email,
           tickets: this.tickets,
         };
 
-        this.updateGuest(updatedGuest);
+        this.updateGuest(this.guest, updatedGuest);
         this.$emit('close');
       }
     },
