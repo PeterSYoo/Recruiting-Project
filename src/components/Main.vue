@@ -128,7 +128,6 @@ export default {
       const guests = await guestRepository.load();
       this.guests = guests;
       await guestRepository.save(guests);
-      console.log('Guests saved to localStorage');
     } catch (error) {
       console.error('Error loading guests', error);
     }
@@ -147,10 +146,8 @@ export default {
         const guests = await guestRepository.load();
 
         guests.push(newGuest);
-        console.log('New guest added to guests array');
 
         await guestRepository.save(guests);
-        console.log('Updated guests array saved to localStorage');
 
         // Re-render the component by updating the guests state
         this.guests = guests;
@@ -174,11 +171,9 @@ export default {
 
         // Replace current guest with updated guest in guests array
         guests.splice(index, 1, updatedGuest);
-        console.log('Guest updated successfully in guests array');
 
         // Save the updated array to the localStorage
         await guestRepository.save(guests);
-        console.log('Updated guests array saved to localStorage');
 
         // Re-render the component by updating the guests state
         this.guests = guests;
@@ -191,10 +186,8 @@ export default {
         const guests = await guestRepository.load();
 
         guests.splice(index, 1);
-        console.log('Guest deleted from guests array');
 
         await guestRepository.save(guests);
-        console.log('Updated guests array saved to localStorage');
 
         // Re-render the component by updating the guests state
         this.guests = guests;
