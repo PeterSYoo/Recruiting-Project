@@ -140,8 +140,22 @@ export default {
       this.guest = guest;
       this.showAddNewGuestModal = true;
     },
-    newGuest(newGuest) {
-      console.log({ newGuest });
+    async newGuest(newGuest) {
+      try {
+        const guests = await guestRepository.load();
+
+        guests.push(newGuest);
+        console.log('New guest added to guests array');
+
+        await guestRepository.save(guests);
+        console.log('Updated guests array saved to localStorage');
+
+        // Re-render the component by loading again and updating the guests state
+        const updatedGuests = await guestRepository.load();
+        this.guests = updatedGuests;
+      } catch (error) {
+        console.log(error);
+      }
     },
     async updateGuest(currentGuest, updatedGuest) {
       try {
@@ -165,7 +179,7 @@ export default {
         await guestRepository.save(guests);
         console.log('Updated guests array saved to localStorage');
 
-        // Re-render the component by loading again.
+        // Re-render the component by loading again and updating the guests state
         const updatedGuests = await guestRepository.load();
         this.guests = updatedGuests;
       } catch (error) {
