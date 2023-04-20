@@ -19,13 +19,21 @@
     />
     <!------------------------------ HEADER ----------------------------------->
     <section
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
       class="-mb-5 flex w-full max-w-1440 items-center justify-between px-6"
     >
       <div class="flex items-center gap-5">
         <div>
           <img
-            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681800072/KPA%20Test/logo-nyan_b7u9zp.png"
-            alt="logo"
+            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1682026756/KPA%20Test/cat_dgxgcv.png"
+            alt="cat"
+            v-show="!isHovered"
+          />
+          <img
+            src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1682026821/KPA%20Test/cat-animated_brpelg.gif"
+            alt="cat animated"
+            v-show="isHovered"
           />
         </div>
         <h1 class="text-3xl text-charcoal">NYAN CAT SHOW</h1>
@@ -121,6 +129,7 @@ export default {
       showAddNewGuestModal: false,
       guest: {},
       guestUpdated: false,
+      isHovered: false,
     };
   },
   async mounted() {
