@@ -68,10 +68,12 @@
       >
         <!-------------------------- GUESTS ----------------------------------->
         <Guest
-          v-for="guest in guests"
+          v-for="(guest, index) in guests"
           :key="guest.email"
           :email="guest.email"
           :guest="guest"
+          :index="index"
+          :deleteGuest="deleteGuest"
           @open-edit-modal="openEditModal"
         />
         <!--------------------------------------------------------------------->
@@ -150,9 +152,8 @@ export default {
         await guestRepository.save(guests);
         console.log('Updated guests array saved to localStorage');
 
-        // Re-render the component by loading again and updating the guests state
-        const updatedGuests = await guestRepository.load();
-        this.guests = updatedGuests;
+        // Re-render the component by updating the guests state
+        this.guests = guests;
       } catch (error) {
         console.log(error);
       }
@@ -179,11 +180,26 @@ export default {
         await guestRepository.save(guests);
         console.log('Updated guests array saved to localStorage');
 
-        // Re-render the component by loading again and updating the guests state
-        const updatedGuests = await guestRepository.load();
-        this.guests = updatedGuests;
+        // Re-render the component by updating the guests state
+        this.guests = guests;
       } catch (error) {
         console.error(error);
+      }
+    },
+    async deleteGuest(index) {
+      try {
+        const guests = await guestRepository.load();
+
+        guests.splice(index, 1);
+        console.log('Guest deleted from guests array');
+
+        await guestRepository.save(guests);
+        console.log('Updated guests array saved to localStorage');
+
+        // Re-render the component by updating the guests state
+        this.guests = guests;
+      } catch (error) {
+        console.log(error);
       }
     },
   },
