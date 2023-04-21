@@ -22,6 +22,7 @@
     <!------------------------------ HEADER ----------------------------------->
     <Header
       :guests="guests"
+      :totalTickets="totalTickets"
       @update-add-new-guest-modal="showAddNewGuestModal = $event"
     />
     <!------------------------------------------------------------------------->
@@ -103,12 +104,19 @@ export default {
       showAddNewGuestModal: false,
       guest: {},
       guestUpdated: false,
+      totalTickets: 0,
     };
   },
   async mounted() {
     try {
       const guests = await guestRepository.load();
       this.guests = guests;
+
+      this.totalTickets = this.guests.reduce(
+        (acc, guest) => acc + parseInt(guest.tickets),
+        0
+      );
+
       await guestRepository.save(guests);
     } catch (error) {
       console.error('Error loading guests', error);
@@ -133,6 +141,11 @@ export default {
 
         // Re-render the component by updating the guests state
         this.guests = guests;
+
+        this.totalTickets = this.guests.reduce(
+          (acc, guest) => acc + parseInt(guest.tickets),
+          0
+        );
       } catch (error) {
         console.log(error);
       }
@@ -159,6 +172,11 @@ export default {
 
         // Re-render the component by updating the guests state
         this.guests = guests;
+
+        this.totalTickets = this.guests.reduce(
+          (acc, guest) => acc + parseInt(guest.tickets),
+          0
+        );
       } catch (error) {
         console.error(error);
       }
@@ -173,6 +191,11 @@ export default {
 
         // Re-render the component by updating the guests state
         this.guests = guests;
+
+        this.totalTickets = this.guests.reduce(
+          (acc, guest) => acc + parseInt(guest.tickets),
+          0
+        );
       } catch (error) {
         console.log(error);
       }
