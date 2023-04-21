@@ -23,7 +23,7 @@
         />
       </div>
       <!----------------------------------------------------------------------->
-      <div class="-ml-10 -mt-10 flex justify-center gap-56">
+      <div class="-ml-10 -mt-10 flex items-end justify-center gap-56">
         <!------------------------ EMAIL INPUT -------------------------------->
         <div class="flex w-1/4 flex-col items-center">
           <div>
