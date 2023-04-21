@@ -27,10 +27,19 @@
       </p>
     </div>
     <div
+      :class="{
+        'hover:border-opacity-20': isGuestOver,
+      }"
       class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-charcoal"
       @click="updateAddNewGuestModal(true)"
     >
       <button
+        :disabled="isGuestOver"
+        :class="{
+          'opacity-50': isGuestOver,
+          'group-hover:border-opacity-20': isGuestOver,
+          'line-through': isGuestOver,
+        }"
         class="border border-transparent px-3 py-1 text-3xl text-charcoal group-hover:border group-hover:border-charcoal"
       >
         ADD NEW GUEST
@@ -47,12 +56,26 @@ export default {
       type: Array,
       required: true,
     },
-    totalTickets: Number,
+    totalTickets: {
+      type: Number,
+      required: true,
+    },
+    isGuestOver: {
+      type: Boolean,
+      required: true,
+    },
   },
   data: () => {
     return {
       isHovered: false,
     };
+  },
+  mounted() {
+    console.log(this.totalTickets);
+    if (this.totalTickets >= 20) {
+      this.isGuestOver = true;
+      console.log(this.isGuestOver);
+    }
   },
   methods: {
     updateAddNewGuestModal(boolean) {
