@@ -106,9 +106,18 @@
         <!--------------------------------------------------------------------->
         <!------------------------- OK BUTTON --------------------------------->
         <div
+          :class="{
+            'hover:border-opacity-20': isSubmitDisabled,
+          }"
           class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
         >
           <button
+            :disabled="isSubmitDisabled"
+            :class="{
+              'opacity-50': isSubmitDisabled,
+              'group-hover:border-opacity-20': isSubmitDisabled,
+              'line-through': isSubmitDisabled,
+            }"
             type="submit"
             @click="onSubmit()"
             class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
@@ -157,10 +166,6 @@ export default {
       type: Function,
       required: true,
     },
-    isGuestOver: {
-      type: Boolean,
-      required: true,
-    },
     totalTickets: {
       type: Number,
       required: true,
@@ -172,6 +177,7 @@ export default {
       email: this.guest.email,
       tickets: this.guest.tickets,
       totalTicketsPlusInput: 0,
+      isSubmitDisabled: false,
     };
   },
   watch: {
@@ -182,6 +188,12 @@ export default {
 
       this.totalTicketsPlusInput = this.totalTickets + newTicketValue;
       console.log('totalTicketsPlusInput: ', this.totalTicketsPlusInput);
+
+      if (this.totalTicketsPlusInput >= 20) {
+        this.isSubmitDisabled = true;
+      } else if (this.totalTicketsPlusInput < 20) {
+        this.isSubmitDisabled = false;
+      }
     },
   },
   mounted() {
@@ -197,8 +209,7 @@ export default {
         this.$refs.emailValidator.messages[0] ||
         this.$refs.ticketsValidator.messages[0]
       ) {
-        return null;
-      } else if (this.totalTicketsPlusInput >= 20) {
+        this.isSubmitDisabled = true;
         return null;
       } else {
         const updatedGuest = {
