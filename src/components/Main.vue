@@ -23,6 +23,7 @@
     <Header
       :guests="guests"
       :totalTickets="totalTickets"
+      :isGuestOver="isGuestOver"
       @update-add-new-guest-modal="showAddNewGuestModal = $event"
     />
     <!------------------------------------------------------------------------->
@@ -105,6 +106,7 @@ export default {
       guest: {},
       guestUpdated: false,
       totalTickets: 0,
+      isGuestOver: false,
     };
   },
   async mounted() {
@@ -121,6 +123,15 @@ export default {
     } catch (error) {
       console.error('Error loading guests', error);
     }
+  },
+  watch: {
+    totalTickets(newValue) {
+      if (newValue >= 20) {
+        this.isGuestOver = true;
+      } else if (newValue < 20) {
+        this.isGuestOver = false;
+      }
+    },
   },
   methods: {
     openEditModal(guest) {
