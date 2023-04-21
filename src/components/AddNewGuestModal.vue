@@ -44,8 +44,16 @@
                 v-model="email"
               />
               <p
+                v-if="totalTicketsPlusInput >= 20"
+                class="absolute left-0 top-36 z-50 mt-3 flex w-full justify-center text-center text-3xl text-eggshell"
+              >
+                "That puts your guests over at max capacity,
+                {{ totalTicketsPlusInput }} guests total please remove some
+                tickets."
+              </p>
+              <p
                 v-if="errors[0]"
-                class="absolute left-0 top-0 z-30 mt-44 flex w-full justify-center text-center text-3xl text-eggshell"
+                class="absolute left-0 top-0 z-30 mt-48 flex w-full justify-center text-center text-3xl text-eggshell"
               >
                 "{{ errors[0] }}"
               </p>
@@ -107,9 +115,18 @@
         <!--------------------------------------------------------------------->
         <!------------------------- OK BUTTON --------------------------------->
         <div
+          :class="{
+            'hover:border-opacity-20': isSubmitDisabled,
+          }"
           class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
         >
           <button
+            :disabled="isSubmitDisabled"
+            :class="{
+              'opacity-50': isSubmitDisabled,
+              'group-hover:border-opacity-20': isSubmitDisabled,
+              'line-through': isSubmitDisabled,
+            }"
             type="submit"
             @click="onSubmit()"
             class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
@@ -140,6 +157,10 @@ export default {
       type: Function,
       required: true,
     },
+    totalTickets: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -148,6 +169,8 @@ export default {
       tickets: 1,
       animateLeft: false,
       animateRight: false,
+      totalTicketsPlusInput: 0,
+      isSubmitDisabled: false,
     };
   },
   mounted() {
@@ -161,12 +184,26 @@ export default {
       this.animateRight = !this.showNextGhost;
     }, 4000);
   },
+  watch: {
+    tickets(newValue) {
+      this.totalTicketsPlusInput =
+        parseInt(this.totalTickets) + parseInt(newValue);
+      console.log('totalTicketsPlusInput: ', this.totalTicketsPlusInput);
+
+      if (this.totalTicketsPlusInput >= 20) {
+        this.isSubmitDisabled = true;
+      } else if (this.totalTicketsPlusInput < 20) {
+        this.isSubmitDisabled = false;
+      }
+    },
+  },
   methods: {
     onSubmit() {
       if (
         this.$refs.emailValidator.messages[0] ||
         this.$refs.ticketsValidator.messages[0]
       ) {
+        this.isSubmitDisabled = true;
         return null;
       } else {
         const newGuest = {
