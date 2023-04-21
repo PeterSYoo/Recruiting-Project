@@ -145,7 +145,7 @@
               @click="onSubmit()"
               class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
             >
-              FORCE EDIT
+              FORCE ADD
             </button>
           </div>
           <!--------------------------------------------------------------------->
