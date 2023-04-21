@@ -51,6 +51,7 @@
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
+  name: 'Header',
   props: {
     guests: {
       type: Array,
