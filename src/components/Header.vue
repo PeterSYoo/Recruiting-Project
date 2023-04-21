@@ -3,7 +3,7 @@
   <section
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
-    class="-mb-5 flex w-full max-w-1440 items-center justify-between px-6"
+    class="-mb-2 flex w-full max-w-1440 items-end justify-between px-6"
   >
     <div class="flex items-center gap-5">
       <div>
@@ -20,8 +20,11 @@
       </div>
       <h1 class="text-3xl text-charcoal">NYAN CAT SHOW</h1>
     </div>
-    <div>
-      <p class="text-3xl text-charcoal">TOTAL GUESTS: {{ guests.length }}</p>
+    <div class="flex flex-col items-center">
+      <p class="text-3xl text-charcoal">TOTAL GUESTS: {{ totalTickets }}</p>
+      <p class="pb-2 text-3xl text-charcoal">
+        {{ totalTickets >= 20 ? 'AT MAX CAPACITY 20 GUEST LIMIT!' : null }}
+      </p>
     </div>
     <div
       class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-charcoal"
@@ -44,6 +47,7 @@ export default {
       type: Array,
       required: true,
     },
+    totalTickets: Number,
   },
   data: () => {
     return {
