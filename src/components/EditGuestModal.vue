@@ -8,7 +8,7 @@
       class="mt-20 flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-black py-10"
     >
       <!--------------------------- SHOPKEEP ---------------------------------->
-      <div class="flex justify-center pt-14">
+      <div class="flex justify-center pt-20">
         <img
           src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1682037576/KPA%20Test/wizard_bnhjna.png"
           alt="wizard"
@@ -38,9 +38,17 @@
               />
               <p
                 v-if="errors[0]"
-                class="absolute left-0 top-80 z-50 -mt-5 flex w-full justify-center text-center text-3xl text-eggshell"
+                class="absolute left-0 top-80 z-50 flex w-full justify-center text-center text-3xl text-eggshell"
               >
                 "{{ errors[0] }}"
+              </p>
+              <p
+                v-if="totalTicketsPlusInput >= 20"
+                class="absolute left-0 top-28 z-50 flex w-full justify-center text-center text-3xl text-eggshell"
+              >
+                "That puts your guests over at max capacity,
+                {{ totalTicketsPlusInput }} guests total please remove some
+                tickets."
               </p>
             </template>
           </ValidationProvider>
@@ -72,7 +80,7 @@
                 <span class="">Ticket(s)</span>
                 <p
                   v-if="errors[0]"
-                  class="absolute left-0 top-80 z-50 mt-3 flex w-full justify-center text-center text-3xl text-eggshell"
+                  class="absolute left-0 top-80 z-50 mt-8 flex w-full justify-center text-center text-3xl text-eggshell"
                 >
                   "{{ errors[0] }}"
                 </p>
@@ -135,6 +143,7 @@
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
+  name: 'EditGuestModal',
   props: {
     showEditGuestModal: {
       type: Boolean,
@@ -148,13 +157,32 @@ export default {
       type: Function,
       required: true,
     },
+    isGuestOver: {
+      type: Boolean,
+      required: true,
+    },
+    totalTickets: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
       showLinkBehind: false,
       email: this.guest.email,
       tickets: this.guest.tickets,
+      totalTicketsPlusInput: 0,
     };
+  },
+  watch: {
+    tickets(newValue) {
+      let newTicketValue;
+
+      newTicketValue = newValue - this.guest.tickets;
+
+      this.totalTicketsPlusInput = this.totalTickets + newTicketValue;
+      console.log('totalTicketsPlusInput: ', this.totalTicketsPlusInput);
+    },
   },
   mounted() {
     const offScreenImage = document.querySelector('.translate-y-full');
@@ -169,6 +197,8 @@ export default {
         this.$refs.emailValidator.messages[0] ||
         this.$refs.ticketsValidator.messages[0]
       ) {
+        return null;
+      } else if (this.totalTicketsPlusInput >= 20) {
         return null;
       } else {
         const updatedGuest = {
