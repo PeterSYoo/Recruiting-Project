@@ -55,6 +55,7 @@
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
+  name: 'Guest',
   props: {
     guest: {
       type: Object,
