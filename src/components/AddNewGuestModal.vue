@@ -126,6 +126,7 @@
 // --------------------------------- SCRIPT -------------------------------- ***
 <script>
 export default {
+  name: 'AddNewGuestModal',
   props: {
     showAddNewGuestModal: {
       type: Boolean,
