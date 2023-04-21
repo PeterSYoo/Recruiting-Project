@@ -10,7 +10,7 @@
       <!--------------------------- SHOPKEEP ---------------------------------->
       <div class="flex justify-center pt-14">
         <img
-          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1681889466/KPA%20Test/wizard_ykxkmr.png"
+          src="https://res.cloudinary.com/dryh1nvhk/image/upload/v1682037576/KPA%20Test/wizard_bnhjna.png"
           alt="wizard"
           class="scale-150 transform"
         />
