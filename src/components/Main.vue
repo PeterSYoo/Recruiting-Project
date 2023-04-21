@@ -10,6 +10,7 @@
       :showAddNewGuestModal="showAddNewGuestModal"
       :guest="guest"
       :newGuest="newGuest"
+      :totalTickets="totalTickets"
     />
     <EditGuestModal
       v-if="showEditGuestModal"
