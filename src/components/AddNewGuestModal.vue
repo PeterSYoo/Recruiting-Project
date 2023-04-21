@@ -189,6 +189,14 @@ export default {
     };
   },
   mounted() {
+    this.totalTicketsPlusInput = parseInt(this.totalTickets);
+
+    if (this.totalTicketsPlusInput >= 20) {
+      this.isSubmitDisabled = true;
+    } else if (this.totalTicketsPlusInput < 20) {
+      this.isSubmitDisabled = false;
+    }
+
     this.showNextGhost = !this.showNextGhost;
     this.animateLeft = this.showNextGhost;
     this.animateRight = !this.showNextGhost;
