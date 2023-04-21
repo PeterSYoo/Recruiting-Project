@@ -104,28 +104,43 @@
           </button>
         </div>
         <!--------------------------------------------------------------------->
-        <!------------------------- OK BUTTON --------------------------------->
-        <div
-          :class="{
-            'hover:border-opacity-20': isSubmitDisabled,
-          }"
-          class="group -mr-3 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
-        >
-          <button
-            :disabled="isSubmitDisabled"
+        <div class="flex items-center gap-10">
+          <!------------------------- OK BUTTON --------------------------------->
+          <div
             :class="{
-              'opacity-50': isSubmitDisabled,
-              'group-hover:border-opacity-20': isSubmitDisabled,
-              'line-through': isSubmitDisabled,
+              'hover:border-opacity-20': isSubmitDisabled,
             }"
-            type="submit"
-            @click="onSubmit()"
-            class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
+            class="group -mr-3 w-auto border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
           >
-            OK
-          </button>
+            <button
+              :disabled="isSubmitDisabled"
+              :class="{
+                'opacity-50': isSubmitDisabled,
+                'group-hover:border-opacity-20': isSubmitDisabled,
+                'line-through': isSubmitDisabled,
+              }"
+              type="submit"
+              @click="onSubmit()"
+              class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
+            >
+              OK
+            </button>
+          </div>
+          <!--------------------------------------------------------------------->
+          <!--------------------- FORCE EDIT BUTTON ----------------------------->
+          <div
+            class="group -mr-48 border-2 border-transparent p-0.5 hover:border-2 hover:border-eggshell"
+          >
+            <button
+              type="submit"
+              @click="onSubmit()"
+              class="border border-transparent px-3 py-1 text-5xl text-eggshell group-hover:border group-hover:border-eggshell"
+            >
+              FORCE EDIT
+            </button>
+          </div>
+          <!--------------------------------------------------------------------->
         </div>
-        <!--------------------------------------------------------------------->
       </div>
     </div>
     <div class="flex w-48 flex-1 justify-center bg-black">
