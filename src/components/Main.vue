@@ -18,6 +18,7 @@
       :guest="guest"
       :updateGuest="updateGuest"
       :isGuestOver="isGuestOver"
+      :totalTickets="totalTickets"
     />
     <!------------------------------------------------------------------------->
     <!------------------------------ HEADER ----------------------------------->
