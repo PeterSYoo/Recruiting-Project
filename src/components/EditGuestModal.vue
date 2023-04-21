@@ -212,6 +212,14 @@ export default {
     },
   },
   mounted() {
+    this.totalTicketsPlusInput = parseInt(this.totalTickets);
+
+    if (this.totalTicketsPlusInput >= 20) {
+      this.isSubmitDisabled = true;
+    } else if (this.totalTicketsPlusInput < 20) {
+      this.isSubmitDisabled = false;
+    }
+
     const offScreenImage = document.querySelector('.translate-y-full');
     offScreenImage.classList.add('animate-slide-up');
     setTimeout(() => {
