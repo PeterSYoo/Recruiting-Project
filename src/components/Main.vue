@@ -17,6 +17,7 @@
       :showEditGuestModal="showEditGuestModal"
       :guest="guest"
       :updateGuest="updateGuest"
+      :isGuestOver="isGuestOver"
     />
     <!------------------------------------------------------------------------->
     <!------------------------------ HEADER ----------------------------------->
@@ -92,6 +93,7 @@ import Header from './Header.vue';
 const guestRepository = new GuestRepository();
 
 export default {
+  name: 'Main',
   components: {
     Guest,
     EditGuestModal,
