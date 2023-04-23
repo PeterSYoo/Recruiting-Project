@@ -113,7 +113,7 @@ export default {
       isGuestOver: false,
     };
   },
-  async mounted() {
+  async created() {
     try {
       const guests = await guestRepository.load();
       this.guests = guests;
@@ -148,7 +148,7 @@ export default {
     },
     async newGuest(newGuest) {
       try {
-        const guests = await guestRepository.load();
+        const guests = [...this.guests];
 
         guests.push(newGuest);
 
@@ -167,7 +167,7 @@ export default {
     },
     async updateGuest(currentGuest, updatedGuest) {
       try {
-        const guests = await guestRepository.load();
+        const guests = [...this.guests];
 
         // Find index position of current guest
         const index = guests.findIndex(
@@ -198,7 +198,7 @@ export default {
     },
     async deleteGuest(index) {
       try {
-        const guests = await guestRepository.load();
+        const guests = [...this.guests];
 
         guests.splice(index, 1);
 
