@@ -151,10 +151,6 @@ export default {
       this.guest = guest;
       this.showEditGuestModal = true;
     },
-    openAddNewGuestModal(guest) {
-      this.guest = guest;
-      this.showAddNewGuestModal = true;
-    },
     async newGuest(newGuest) {
       try {
         const guests = [...this.guests];
