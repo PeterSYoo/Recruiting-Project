@@ -2,10 +2,10 @@
 <template>
   <form
     @submit.prevent="onSubmit"
-    class="fixed left-0 top-0 z-40 flex h-screen w-screen flex-col items-center justify-center bg-add-modal-pattern"
+    class="fixed left-0 top-0 z-40 flex h-screen w-screen flex-col items-center bg-add-modal-pattern"
   >
     <div
-      class="flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-black py-10"
+      class="mt-36 flex h-full max-h-650 w-full max-w-1090 flex-col justify-between bg-black py-10"
     >
       <!---------------------------- GHOST ------------------------------------>
       <div class="flex justify-center pt-32">
