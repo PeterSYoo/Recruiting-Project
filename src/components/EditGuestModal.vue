@@ -168,6 +168,7 @@
 <script>
 export default {
   name: 'EditGuestModal',
+  // -------------------------------- PROPS -------------------------------- ***
   props: {
     showEditGuestModal: {
       type: Boolean,
@@ -186,6 +187,8 @@ export default {
       required: true,
     },
   },
+  // ----------------------------------------------------------------------- ***
+  // --------------------------------- DATA -------------------------------- ***
   data() {
     return {
       showLinkBehind: false,
@@ -195,6 +198,8 @@ export default {
       isSubmitDisabled: false,
     };
   },
+  // ----------------------------------------------------------------------- ***
+  // --------------------------------- WATCH ------------------------------- ***
   watch: {
     tickets(newValue) {
       let newTicketValue;
@@ -202,7 +207,6 @@ export default {
       newTicketValue = newValue - this.guest.tickets;
 
       this.totalTicketsPlusInput = this.totalTickets + newTicketValue;
-      console.log('totalTicketsPlusInput: ', this.totalTicketsPlusInput);
 
       if (this.totalTicketsPlusInput >= 20) {
         this.isSubmitDisabled = true;
@@ -226,6 +230,8 @@ export default {
       this.showLinkBehind = true;
     }, 3000);
   },
+  // ----------------------------------------------------------------------- ***
+  // -------------------------------- METHODS ------------------------------ ***
   methods: {
     onSubmit() {
       if (
@@ -245,6 +251,7 @@ export default {
       }
     },
   },
+  // ----------------------------------------------------------------------- ***
 };
 </script>
 // ------------------------------------------------------------------------- ***
