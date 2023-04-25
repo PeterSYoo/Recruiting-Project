@@ -159,6 +159,7 @@
 <script>
 export default {
   name: 'AddNewGuestModal',
+  // -------------------------------- PROPS -------------------------------- ***
   props: {
     showAddNewGuestModal: {
       type: Boolean,
@@ -177,6 +178,8 @@ export default {
       required: true,
     },
   },
+  // ----------------------------------------------------------------------- ***
+  // --------------------------------- DATA -------------------------------- ***
   data() {
     return {
       showNextGhost: false,
@@ -188,6 +191,8 @@ export default {
       isSubmitDisabled: false,
     };
   },
+  // ----------------------------------------------------------------------- ***
+  // -------------------------------- MOUNTED ------------------------------ ***
   mounted() {
     this.totalTicketsPlusInput = parseInt(this.totalTickets);
 
@@ -207,11 +212,12 @@ export default {
       this.animateRight = !this.showNextGhost;
     }, 4000);
   },
+  // ----------------------------------------------------------------------- ***
+  // --------------------------------- WATCH ------------------------------- ***
   watch: {
     tickets(newValue) {
       this.totalTicketsPlusInput =
         parseInt(this.totalTickets) + parseInt(newValue);
-      console.log('totalTicketsPlusInput: ', this.totalTicketsPlusInput);
 
       if (this.totalTicketsPlusInput >= 20) {
         this.isSubmitDisabled = true;
@@ -220,6 +226,8 @@ export default {
       }
     },
   },
+  // ----------------------------------------------------------------------- ***
+  // -------------------------------- METHODS ------------------------------ ***
   methods: {
     onSubmit() {
       if (
@@ -239,6 +247,7 @@ export default {
       }
     },
   },
+  // ----------------------------------------------------------------------- ***
 };
 </script>
 // ------------------------------------------------------------------------- ***
