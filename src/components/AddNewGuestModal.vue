@@ -192,8 +192,8 @@ export default {
     };
   },
   // ----------------------------------------------------------------------- ***
-  // -------------------------------- MOUNTED ------------------------------ ***
-  mounted() {
+  // -------------------------------- CREATED ------------------------------ ***
+  created() {
     this.totalTicketsPlusInput = parseInt(this.totalTickets);
 
     if (this.totalTicketsPlusInput >= 20) {
